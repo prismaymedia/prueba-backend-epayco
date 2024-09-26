@@ -1,0 +1,8 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "baseUrl": "http://localhost:3000",
+            "webhookUrl": "https://webhook.site/ba142747-6d8f-4585-af15-ce65d103525a"
+        }
+    }
+}
