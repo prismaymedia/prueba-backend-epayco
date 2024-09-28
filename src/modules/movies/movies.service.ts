@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { MoviesRepository } from './repository/movie.repository';
 
 @Injectable()
 export class MoviesService {
+  constructor(private readonly movieRepository: MoviesRepository) {}
+
   async getMovies(): Promise<any[]> {
-    return [
-      { title: 'Movie 1', director: 'Director 1' },
-      { title: 'Movie 2', director: 'Director 2' },
-    ];
+    return this.movieRepository.find();
   }
 }
