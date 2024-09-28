@@ -1,4 +1,11 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 
-@Controller('movies')
-export class MoviesController {}
+import { GetMoviesDto } from './dtos/getMovies.dto';
+
+@Controller('get-movies')
+export class MoviesController {
+  @Get()
+  async getMovies(@Query() queryStrings: GetMoviesDto): Promise<any> {
+    return { message: 'Hello world!', params: queryStrings };
+  }
+}
