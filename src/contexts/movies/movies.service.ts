@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MoviesRepository } from './repository/movie.repository';
-import { SimilarYearService } from '../similarYear/similar-year.service';
+import { SimilarYearService } from '../../services/similarYear/similar-year.service';
 
 @Injectable()
 export class MoviesService {

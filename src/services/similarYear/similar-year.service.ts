@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { OmdbApiService } from '../shared/omdb-api/obdm-api.service';
+import { OmdbApiService } from '../omdb-api/obdm-api.service';
 
 @Injectable()
 export class SimilarYearService {

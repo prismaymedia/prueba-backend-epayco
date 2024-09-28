@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import { DatabaseModule } from './database/database.module';
-import { MoviesModule } from './modules/movies/movies.module';
+import { MoviesModule } from './app/movies/movies.module';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';

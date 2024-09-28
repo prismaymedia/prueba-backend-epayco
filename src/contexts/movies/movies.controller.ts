@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 
 import { GetMoviesDto } from './dtos/getMovies.dto';
 import { MoviesService } from './movies.service';
-import { WebhooksService } from '../webhooks/webhooks.service';
+import { WebhooksService } from '../../services/webhooks/webhooks.service';
 
 @Controller('get-movies')
 export class MoviesController {
