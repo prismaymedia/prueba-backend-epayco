@@ -29,3 +29,21 @@ En la base de datos, cada documento de película contiene más información de l
 ```
 
 Esta modificación garantiza que solo los campos necesarios se extraigan de la base de datos, mejorando así el rendimiento y la claridad de los datos manipulados por el servicio.
+
+## Módulo de Servicios para `similar_year`
+
+Se decidió añadir el campo `year` ya que es necesario para realizar consultas al servicio externo con el objetivo de obtener películas que coincidan con el mismo año. Se agrega a la proyección.
+**Proyección**
+```TypeScript
+{
+    title: 1,
+    cast: 1,
+    directors: 1,
+    year: 1,
+    similar_year: 1
+}
+```
+
+Se optó por la API de `TMDB` debido a que la API de `OMDb` presenta limitaciones. En `OMDb`, para consultar películas es necesario proporcionar el título de la película, lo cual restringe la capacidad de realizar consultas basadas únicamente en el año. `TMDB`, en cambio, permite consultas más flexibles.
+
+Se añadió una validación en la función encargada de consultar al servicio externo para evitar que el mismo título sea añadido como uno de los `similar_year`. Esta validación asegura que las películas sugeridas como similares sean realmente diferentes al título consultado.

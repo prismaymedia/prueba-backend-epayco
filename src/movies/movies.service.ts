@@ -10,7 +10,6 @@ export class MoviesService {
     @InjectModel(Movie.name) private movieModel: Model<MovieDocument>,
   ) {}
 
-  //TODO: add pagination feature
   async findAll(): Promise<Movie[]> {
     return this.movieModel
       .find(
@@ -19,6 +18,7 @@ export class MoviesService {
           title: 1,
           cast: 1,
           directors: 1,
+          year: 1,
           similar_year: 1,
         },
       )
