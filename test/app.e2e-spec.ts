@@ -15,10 +15,11 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/get-movies (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+      .get(
+        '/movies/get-movies?webhook_url=https://webhook.site/your-webhook-url',
+      )
+      .expect(200);
   });
 });
