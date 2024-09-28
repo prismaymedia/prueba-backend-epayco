@@ -1,8 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseInterceptors } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
+import { OmdbErrorInterceptor } from './omdb-error.interceptor';
 
 @Injectable()
+@UseInterceptors(OmdbErrorInterceptor)
 export class OmdbApiService {
   constructor(private readonly configService: ConfigService) {}
 
@@ -15,7 +17,7 @@ export class OmdbApiService {
         apiKey,
         y: year,
         type: 'movie',
-        s: 'door',
+        s: 'a',
       },
     });
   }

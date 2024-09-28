@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OmdbApiService } from './obdm-api.service';
+import { OmdbApiService } from './omdb-api.service';
 
 describe('OmdbApiService', () => {
   let service: OmdbApiService;
