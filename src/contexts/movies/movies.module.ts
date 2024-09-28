@@ -8,7 +8,7 @@ import { MoviesController } from './movies.controller';
 
 import { MoviesService } from './movies.service';
 
-import { SimilarYearModule } from '../../services/similarYear/similar-year.module';
+import { SimilarYearModule } from '../../services/similar-year/similar-year.module';
 import { WebhooksModule } from '../../services/webhooks/webhooks.module';
 
 @Module({
