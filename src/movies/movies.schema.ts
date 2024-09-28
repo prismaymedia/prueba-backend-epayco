@@ -1,10 +1,13 @@
+import { HydratedDocument, Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
 
 export type MovieDocument = HydratedDocument<Movie>;
 
 @Schema()
 export class Movie {
+  @Prop({ type: Types.ObjectId })
+  _id: Types.ObjectId;
+
   @Prop({ required: true, type: String })
   title: string;
 

@@ -12,6 +12,17 @@ export class MoviesService {
 
   //TODO: add pagination feature
   async findAll(): Promise<Movie[]> {
-    return this.movieModel.find({ type: 'movie' }).limit(20).exec();
+    return this.movieModel
+      .find(
+        { type: 'movie' },
+        {
+          title: 1,
+          cast: 1,
+          directors: 1,
+          similar_year: 1,
+        },
+      )
+      .limit(20)
+      .exec();
   }
 }
