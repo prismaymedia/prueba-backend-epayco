@@ -1,8 +1,17 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb+srv://no-me-hackees:givadgcqexLICxPg@checkout.y9bsm.mongodb.net/?retryWrites=true&w=majority&appName=checkout')],
+  imports: [
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('MONGO_URI'),
+      }),
+      inject: [ConfigService],
+    }),
+  ],
   exports: [MongooseModule],
 })
 export class DatabaseModule {}
