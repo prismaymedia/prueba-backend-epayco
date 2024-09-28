@@ -17,6 +17,9 @@ export class Movie {
   @Prop({ required: true, type: [String] })
   cast: string[];
 
+  @Prop({ required: true, type: Number })
+  year: number;
+
   @Prop({ type: [String], default: [] })
   similar_year: string[];
 }
