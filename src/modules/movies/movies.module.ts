@@ -6,6 +6,7 @@ import { Movie, MovieSchema } from './repository/schemas/movie.schema';
 
 import { MoviesController } from './movies.controller';
 import { MoviesService } from './movies.service';
+import { ServicesModule } from '../services/services.module';
 
 @Module({
   controllers: [MoviesController],
@@ -17,6 +18,7 @@ import { MoviesService } from './movies.service';
         schema: MovieSchema,
       },
     ]),
+    ServicesModule,
   ],
 })
 export class MoviesModule {}
