@@ -1,17 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { MoviesRepository } from './repository/movie.repository';
-import { ServicesService } from '../services/services.service';
+import { SimilarYearService } from '../similarYear/similar-year.service';
 
 @Injectable()
 export class MoviesService {
   constructor(
     private readonly movieRepository: MoviesRepository,
-    private readonly servicesService: ServicesService,
+    private readonly servicesService: SimilarYearService,
   ) {}
 
   async getMovies(): Promise<any[]> {
-    const movies = this.movieRepository.find();
-    const omdbResult = await this.servicesService.getMoviesByYear(2024);
+    const movies = await this.movieRepository.find();
+    const similarYearPromises = movies.map((movie) =>
+      this.servicesService.getMoviesByYear(movie.year),
+    );
+    const similarYearsMovies = await Promise.all(similarYearPromises);
+
+    for (let i = 0; i < movies.length; i++) {
+      this.servicesService.setMovies(movies[i], similarYearsMovies[i]);
+    }
 
     return movies;
   }

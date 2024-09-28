@@ -14,6 +14,9 @@ export class Movie extends Document {
 
   @Prop([String])
   cast: string[];
+
+  @Prop()
+  year: number;
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);

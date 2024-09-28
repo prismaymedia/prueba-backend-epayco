@@ -6,7 +6,7 @@ import { Movie, MovieSchema } from './repository/schemas/movie.schema';
 
 import { MoviesController } from './movies.controller';
 import { MoviesService } from './movies.service';
-import { ServicesModule } from '../services/services.module';
+import { SimilarYearModule } from '../similarYear/similar-year.module';
 
 @Module({
   controllers: [MoviesController],
@@ -18,7 +18,7 @@ import { ServicesModule } from '../services/services.module';
         schema: MovieSchema,
       },
     ]),
-    ServicesModule,
+    SimilarYearModule,
   ],
 })
 export class MoviesModule {}
