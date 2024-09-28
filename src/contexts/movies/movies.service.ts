@@ -6,20 +6,19 @@ import { SimilarYearService } from '../../services/similar-year/similar-year.ser
 export class MoviesService {
   constructor(
     private readonly movieRepository: MoviesRepository,
-    private readonly servicesService: SimilarYearService,
+    private readonly similarYearService: SimilarYearService,
   ) {}
 
   async getMovies(): Promise<any[]> {
     const movies = await this.movieRepository.find();
-    const similarYearPromises = movies.map((movie) =>
-      this.servicesService.getMoviesByYear(movie.year),
+    const moviesTitlesByYearPromises = movies.map((movie) =>
+      this.similarYearService.getMoviesByYear(movie.year),
     );
-    const similarYearsMovies = await Promise.all(similarYearPromises);
+    const moviesTitlesByYear = await Promise.all(moviesTitlesByYearPromises);
 
-    for (let i = 0; i < movies.length; i++) {
-      this.servicesService.setMovies(movies[i], similarYearsMovies[i]);
-    }
-
-    return movies;
+    return this.similarYearService.setSimilarYearMovies(
+      movies,
+      moviesTitlesByYear,
+    );
   }
 }

@@ -6,7 +6,7 @@ import { OmdbApiService } from '../omdb-api/obdm-api.service';
 export class SimilarYearService {
   constructor(private readonly omdbApiService: OmdbApiService) {}
 
-  async getMoviesByYear(year: number): Promise<any> {
+  async getMoviesByYear(year: number): Promise<string[]> {
     const response = await this.omdbApiService.getMoviesByYear(year);
 
     if (!response.data.Search) {
@@ -16,7 +16,18 @@ export class SimilarYearService {
     return response.data.Search.slice(0, 5).map(({ Title }) => Title);
   }
 
-  setMovies(movie: Record<string, any>, similarYearMovies: string[]) {
-    movie.similar_year = similarYearMovies;
+  setSimilarYearMovies(
+    movies: Record<string, any>[],
+    moviesTitles: string[][],
+  ) {
+    return movies.map((movie, index) => {
+      return {
+        _id: movie._id,
+        title: movie.title,
+        directors: movie.directors,
+        cast: movie.cast,
+        similar_year: moviesTitles[index],
+      };
+    });
   }
 }
