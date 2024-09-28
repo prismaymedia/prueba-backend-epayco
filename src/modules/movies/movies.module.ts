@@ -5,8 +5,11 @@ import { MoviesRepository } from './repository/movie.repository';
 import { Movie, MovieSchema } from './repository/schemas/movie.schema';
 
 import { MoviesController } from './movies.controller';
+
 import { MoviesService } from './movies.service';
+
 import { SimilarYearModule } from '../similarYear/similar-year.module';
+import { WebhooksModule } from '../webhooks/webhooks.module';
 
 @Module({
   controllers: [MoviesController],
@@ -19,6 +22,7 @@ import { SimilarYearModule } from '../similarYear/similar-year.module';
       },
     ]),
     SimilarYearModule,
+    WebhooksModule,
   ],
 })
 export class MoviesModule {}

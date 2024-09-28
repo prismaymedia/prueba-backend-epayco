@@ -3,9 +3,6 @@ import { WebhooksService } from './webhooks.service';
 
 @Module({
   providers: [WebhooksService],
+  exports: [WebhooksService],
 })
-export class WebhooksModule {
-  sendWebhook() {
-    console.log('Sending Webhook...');
-  }
-}
+export class WebhooksModule {}
