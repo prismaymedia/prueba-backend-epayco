@@ -1,8 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import axios from 'axios';
 
 @Injectable()
 export class WebhooksService {
   async sendWebhook(webhook_url: string) {
-    console.log(`Sending Webhook: ${webhook_url}`);
+    return axios.post(webhook_url, {
+      date: new Date().toISOString(),
+    });
   }
 }
