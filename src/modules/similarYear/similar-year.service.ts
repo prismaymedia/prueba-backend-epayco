@@ -1,14 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 
 import { OmdbApiService } from '../shared/omdb-api/obdm-api.service';
 
 @Injectable()
 export class SimilarYearService {
-  constructor(
-    private readonly configService: ConfigService,
-    private readonly omdbApiService: OmdbApiService,
-  ) {}
+  constructor(private readonly omdbApiService: OmdbApiService) {}
 
   async getMoviesByYear(year: number): Promise<any> {
     const response = await this.omdbApiService.getMoviesByYear(year);
