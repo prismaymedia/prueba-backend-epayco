@@ -1,3 +1,127 @@
+## Ejecución Local
+
+## Uso de DevContainer
+
+Este proyecto incluye una configuración para DevContainer, lo que permite desarrollar en un entorno de contenedor preconfigurado. Para usar DevContainer, sigue estos pasos:
+
+1. **Instalar Dependencias Requeridas**:
+
+- Asegúrate de tener Docker instalado en tu máquina.
+- Instala la extensión de DevContainer en Visual Studio Code.
+
+2. **Abrir el Proyecto en DevContainer**:
+
+- Abre Visual Studio Code.
+- Selecciona `View` > `Command Palette` y escribe `Dev Containers: Open Folder in Container...`.
+- Selecciona la carpeta del proyecto.
+
+3. **Configurar Variables de Entorno**:
+
+- Asegúrate de que el archivo `.env` esté presente en la raíz del proyecto con las variables necesarias.
+
+4. **Iniciar el Servidor**:
+
+- Una vez que el contenedor esté listo, abre una terminal en Visual Studio Code y ejecuta:
+  ```bash
+  npm run start
+  ```
+
+Esto te permitirá desarrollar y probar el proyecto en un entorno consistente y aislado.
+
+```markdown
+## Variables de Entorno
+
+Asegúrate de que el archivo `.env` esté presente en la raíz del proyecto con las siguientes variables:
+```
+
+```bash
+OMBD_API_URL="https://api.themoviedb.org/3/discover/movie"
+OMBD_API_KEY="tu_api_key_de_omdb"
+PORT=3001
+```
+
+```
+Nota: La variable `OMBD_API_KEY` debe solicitarse ya que puede expirar.
+```
+
+Para ejecutar este proyecto en tu entorno local, sigue los siguientes pasos: 3. **Configurar Variables de Entorno**:
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```
+OMBD_API_URL="https://api.themoviedb.org/3/discover/movie"
+OMBD_API_KEY="tu_api_key_de_omdb"
+PORT=3001
+```
+
+1. **Clonar el Repositorio**:
+
+```bash
+git clone [URL_DEL_REPOSITORIO]
+cd prueba-backend-epayco
+```
+
+2. **Instalar Dependencias**:
+
+```bash
+npm install:dev
+```
+
+3. **Configurar Variables de Entorno**:
+   Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```
+OMBD_API_URL="https://api.themoviedb.org/3/discover/movie"
+OMBD_API_KEY="tu_api_key_de_omdb"
+PORT=3001
+```
+
+4. **Iniciar el Servidor**:
+
+```bash
+npm run start
+```
+
+## Probar los Endpoints
+
+### Listar Películas
+
+- **Endpoint**: `GET /movies`
+- **Descripción**: Obtiene un listado de las primeras 20 películas almacenadas en la base de datos.
+- **Ejemplo de Petición**:
+  ```bash
+  curl -X GET http://localhost:[PUERTO]/movies
+  ```
+
+### Obtener Películas por Año Similar
+
+- **Endpoint**: `GET /get-movies?webhook_url=[URL_DEL_WEBHOOK]`
+- **Descripción**: Obtiene películas y envía un evento al webhook proporcionado.
+- **Parámetros**:
+  - `webhook_url`: URL del webhook donde se enviará el evento.
+- **Ejemplo de Petición**:
+  ```bash
+  curl -X GET "http://localhost:[PUERTO]/get-movies?webhook_url=https://webhook.site/tu-webhook-url"
+  ```
+
+### Ejemplo de Respuesta
+
+```json
+{
+  "movies": [
+   {
+    "_id": "603c9d8f1c4ae23a1c8b4567",
+    "title": "Inception",
+    "directors": ["Christopher Nolan"],
+    "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
+    "similar_year": ["Shutter Island", "The Social Network"]
+   },
+   ...
+  ]
+}
+```
+
+---
+
 # Prueba Técnica para Desarrollador Backend
 
 ¡Hola! Bienvenido a esta prueba técnica para el puesto de Desarrollador Backend. El proyecto base estará basado en **NestJS**. A continuación, encontrarás las instrucciones y criterios que deberás seguir para completar la prueba.
