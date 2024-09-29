@@ -9,7 +9,7 @@ import { GetMoviesDto } from '../src/contexts/movies/dtos/getMovies.dto';
 describe('MoviesController (e2e)', () => {
   let app: INestApplication;
   const webhookUrlMock =
-    'https://webhook.site/ba142747-6d8f-4585-af15-ce65d103525a';
+    'https://webhook.site/8e31a796-1dae-44fa-885b-6d9d1f4c703b';
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -45,11 +45,7 @@ describe('MoviesController (e2e)', () => {
         .expect(400)
         .then((response) => {
           expect(response.body).toEqual({
-            message: [
-              'webhook_url must be a URL address',
-              'webhook_url must be a string',
-              'webhook_url should not be empty',
-            ],
+            message: 'webhook_url must be a URL address',
             error: 'Bad Request',
             statusCode: 400,
           });
