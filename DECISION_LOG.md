@@ -16,7 +16,16 @@ Sin embargo, considero que se debería usar `GET /movies` en lugar de `GET /get-
 
 ### Modificaciones en el Servicio de `movies`
 
-En la base de datos, cada documento de película contiene más información de la que está definida en el esquema dado. Para optimizar la consulta y manejar solamente la información necesaria, se ha añadido una proyección a la consulta en la base de datos. No se omite el campo `_id` porque se considera útil para el cliente, permitiendo la realización de operaciones adicionales, como actualizaciones u otras acciones que requieran la identificación del documento.
+En la base de datos, cada documento de película contiene más información de la que está definida en el esquema dado. Para optimizar la consulta y manejar solamente la información necesaria, se ha añadido una proyección a la consulta en la base de datos.Además, dado que en la base de datos hay documentos tanto de películas como de series, el servicio realiza la consulta filtrando únicamente aquellos documentos donde el campo `type` sea igual a `movie`.
+
+No se omite el campo `_id` porque se considera útil para el cliente, permitiendo la realización de operaciones adicionales, como actualizaciones u otras acciones que requieran la identificación del documento.
+
+**Consulta**
+```TypeScript
+{
+    type: 'movie'
+}
+```
 
 **Proyección**
 ```TypeScript

@@ -47,7 +47,12 @@ describe('MoviesController', () => {
           },
         },
         SimilarYearService,
-        WebhookService,
+        {
+          provide: WebhookService,
+          useValue: {
+            send: jest.fn(() => []),
+          },
+        },
       ],
     }).compile();
 
@@ -74,7 +79,9 @@ describe('MoviesController', () => {
   });
 
   it('should return movies list', async () => {
-    const result = await controller.getMoviesWithWebhook({ webhook_url: '' });
+    const result = await controller.getMoviesWithWebhook({
+      webhook_url: 'https://webhook.site/uuid',
+    });
     expect(result.length).toBe(2);
   });
 });
