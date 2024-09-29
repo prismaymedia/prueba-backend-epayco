@@ -6,12 +6,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Movie } from './movies.schema';
 import { MoviesService } from './movies.service';
 import { MoviesController } from './movies.controller';
+import { WebhookService } from '../webhook/webhook.service';
 import { SimilarYearService } from '../similar_year/similar_year.service';
 
 describe('MoviesController', () => {
   let controller: MoviesController;
   let service: MoviesService;
   let similarYearService: SimilarYearService;
+  let webhookService: WebhookService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -45,12 +47,14 @@ describe('MoviesController', () => {
           },
         },
         SimilarYearService,
+        WebhookService,
       ],
     }).compile();
 
     controller = module.get<MoviesController>(MoviesController);
     service = module.get<MoviesService>(MoviesService);
     similarYearService = module.get<SimilarYearService>(SimilarYearService);
+    webhookService = module.get<WebhookService>(WebhookService);
   });
 
   it('should be defined', () => {
@@ -63,6 +67,10 @@ describe('MoviesController', () => {
 
   it('should have a similarYearService defined', () => {
     expect(similarYearService).toBeDefined();
+  });
+
+  it('should have a webhookService defined', () => {
+    expect(webhookService).toBeDefined();
   });
 
   it('should return movies list', async () => {
