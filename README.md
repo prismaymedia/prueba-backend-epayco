@@ -42,6 +42,8 @@ npm run start:dev
 
 6. La API estará disponible en http://localhost:[PORT].
 
+7. Para obtener el `webhook_url`, ingresa a [webhook.site](https://webhook.site/).
+
 ## 📚 Documentación de la API
 
 - `GET /app`: Este es el endpoint por defecto generado por la aplicación.
