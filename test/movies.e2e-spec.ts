@@ -45,7 +45,11 @@ describe('MoviesController (e2e)', () => {
         .expect(400)
         .then((response) => {
           expect(response.body).toEqual({
-            message: 'webhook_url must be a URL address',
+            message: [
+              'webhook_url must be a URL address',
+              'webhook_url must be a string',
+              'webhook_url should not be empty',
+            ],
             error: 'Bad Request',
             statusCode: 400,
           });

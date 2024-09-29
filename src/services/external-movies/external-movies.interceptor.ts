@@ -42,7 +42,7 @@ export class ExternalMoviesErrorInterceptor implements NestInterceptor {
             new HttpException(
               {
                 statusCode: status,
-                message: error.response?.message[0] || error.message,
+                message: error.response?.message || error.message,
                 error: error.response?.error || 'Bad request',
               },
               status,
