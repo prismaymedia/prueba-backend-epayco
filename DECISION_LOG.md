@@ -65,3 +65,20 @@ Se optó por distinguir dos tipos de errores específicos del servicio externo: 
 ### Manejo de Errores en el Webhook
 
 Se optó por no interrumpir el flujo de la aplicación en caso de que el envío del `webhook` falle. En lugar de lanzar una excepción que pudiera afectar el funcionamiento de otras partes de la aplicación, se decidió que los errores se registrarían en un log.
+
+## Pruebas End-to-End (E2E)
+
+### Pruebas para validar el correcto funcionamiento del endpoint `/get-movies`
+
+Se agregó una variable de entorno `TEST_WEBHOOK_URL` para probar diferentes valores del `webhook_url` Esto asegura que la aplicación responda adecuadamente cuando se utiliza el webhook_url correcto.
+
+Se decidió realizar las siguientes pruebas End-to-End para garantizar el correcto funcionamiento del endpoint:
+
+- **Prueba de caso básico con respuesta correcta**
+Se añadió una prueba que valida el caso básico donde se realiza una petición válida y se recibe una respuesta correcta desde el endpoint. Esta prueba asegura que, bajo condiciones normales, la API responde con un código de estado `200`.
+
+- **Prueba para validación de cantidad de elementos y tipos de datos**
+Se realizó una prueba que valida que el endpoint retorne exactamente `20` elementos en su respuesta, y que cada campo de los elementos cumpla con los tipos de datos especificados. Esto garantiza que el formato de la respuesta sea coherente y correcto para su posterior procesamiento.
+
+- **Prueba con query param incorrecto**
+Para validar el manejo de errores, se incluyó una prueba que simula el envío de un query param inválido, asegurando que el servidor retorne un `400 Bad Request`. Esta prueba permite verificar que la API maneja adecuadamente las entradas no válidas y responde con los códigos de estado correspondientes.
