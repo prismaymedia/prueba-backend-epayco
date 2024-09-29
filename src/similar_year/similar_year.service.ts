@@ -38,7 +38,7 @@ export class SimilarYearService {
       return similarMovies;
     } catch (error) {
       this.logger.error(error.message);
-      throw new Error('Error in external movies API similar movies');
+      throw error;
     }
   }
 }

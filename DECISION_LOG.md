@@ -47,3 +47,15 @@ Se decidió añadir el campo `year` ya que es necesario para realizar consultas 
 Se optó por la API de `TMDB` debido a que la API de `OMDb` presenta limitaciones. En `OMDb`, para consultar películas es necesario proporcionar el título de la película, lo cual restringe la capacidad de realizar consultas basadas únicamente en el año. `TMDB`, en cambio, permite consultas más flexibles.
 
 Se añadió una validación en la función encargada de consultar al servicio externo para evitar que el mismo título sea añadido como uno de los `similar_year`. Esta validación asegura que las películas sugeridas como similares sean realmente diferentes al título consultado.
+
+### Validación de `webhook_url` en query params
+
+Para evitar posibles fallos en la integración del webhook, se decidió validar el **query param** `webhook_url`. Esto permitirá suprimir errores a la hora de realizar el llamado del webhook con una URL inválida o faltante, mejorando la robustez en la comunicación con el servicio externo.
+
+### Uso de interceptor global para manejo de errores
+
+Se decidió implementar un interceptor global para el manejo centralizado de errores debido a que la aplicación solo contiene un endpoint, lo que simplifica la gestión de la lógica de pre y post procesamiento. Este enfoque permite capturar y gestionar de forma más eficiente los errores a nivel global sin necesidad de configurar manejo de errores en cada endpoint individualmente.
+
+### Manejo específico de errores del servicio externo
+
+Se optó por distinguir dos tipos de errores específicos del servicio externo: el código 401, que indica un fallo en la autenticación, y el código 503, que refleja problemas de conectividad con el servicio. Estos errores se gestionan de manera diferenciada, mientras que los demás códigos de error se tratan de forma genérica como errores del servicio externo.

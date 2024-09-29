@@ -66,7 +66,7 @@ describe('MoviesController', () => {
   });
 
   it('should return movies list', async () => {
-    const result = await controller.getMoviesWithWebhook('');
+    const result = await controller.getMoviesWithWebhook({ webhook_url: '' });
     expect(result.length).toBe(2);
   });
 });
