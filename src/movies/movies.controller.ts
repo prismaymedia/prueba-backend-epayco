@@ -3,6 +3,7 @@ import { Controller, Get, Logger, Query } from '@nestjs/common';
 import { WebhookUrlDto } from './dtos';
 import { Movie } from './movies.schema';
 import { MoviesService } from './movies.service';
+import { WebhookService } from '../webhook/webhook.service';
 import { SimilarYearService } from '../similar_year/similar_year.service';
 
 @Controller()
@@ -12,6 +13,7 @@ export class MoviesController {
   constructor(
     private readonly moviesService: MoviesService,
     private readonly similarYearService: SimilarYearService,
+    private readonly webhookService: WebhookService,
   ) {}
 
   @Get('get-movies')
@@ -28,8 +30,9 @@ export class MoviesController {
       movie.similar_year = similarMovies;
       movie.year = undefined;
     }
-    //TODO: add logic to send data to webhook
-    console.log(`Webhook URL: ${webhookUrlDto.webhook_url}`);
+    this.webhookService.send(webhookUrlDto.webhook_url, {
+      timestamp: new Date(),
+    });
     this.logger.log(`Returning ${movies.length} movies`);
     return movies;
   }
