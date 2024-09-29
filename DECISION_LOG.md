@@ -59,3 +59,9 @@ Se decidió implementar un interceptor global para el manejo centralizado de err
 ### Manejo específico de errores del servicio externo
 
 Se optó por distinguir dos tipos de errores específicos del servicio externo: el código 401, que indica un fallo en la autenticación, y el código 503, que refleja problemas de conectividad con el servicio. Estos errores se gestionan de manera diferenciada, mientras que los demás códigos de error se tratan de forma genérica como errores del servicio externo.
+
+## Módulo de Servicios para Webhooks
+
+### Manejo de Errores en el Webhook
+
+Se optó por no interrumpir el flujo de la aplicación en caso de que el envío del `webhook` falle. En lugar de lanzar una excepción que pudiera afectar el funcionamiento de otras partes de la aplicación, se decidió que los errores se registrarían en un log.
