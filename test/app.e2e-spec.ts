@@ -1,11 +1,10 @@
 import * as request from 'supertest';
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { disconnect, isValidObjectId } from 'mongoose';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
 
-import { envs } from './../src/config';
 import { AppModule } from './../src/app.module';
-import { ApiErrorInterceptor } from './../src/interceptors/api-error.interceptor';
+import { envs, mainConfig } from './../src/config';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -14,15 +13,8 @@ describe('AppController (e2e)', () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-
     app = moduleFixture.createNestApplication();
-    app.useGlobalPipes(
-      new ValidationPipe({
-        whitelist: true,
-        forbidNonWhitelisted: true,
-      }),
-    );
-    app.useGlobalInterceptors(new ApiErrorInterceptor());
+    mainConfig(app);
     await app.init();
   });
 

@@ -14,7 +14,7 @@ const envsSchema = Joi.object({
   MONGO_URI: Joi.string().required(),
   URL_MOVIE_API: Joi.string().required(),
   API_KEY_MOVIE_API: Joi.string().required(),
-  TEST_WEBHOOK_URL: Joi.string().required(),
+  TEST_WEBHOOK_URL: Joi.string(),
 }).unknown(true);
 
 const { error, value } = envsSchema.validate(process.env);
@@ -29,5 +29,5 @@ export const envs = {
   mongoUri: envVars.MONGO_URI,
   urlMovieApi: envVars.URL_MOVIE_API,
   apiKeyMovieApi: envVars.API_KEY_MOVIE_API,
-  testWebhookUrl: envVars.TEST_WEBHOOK_URL,
+  testWebhookUrl: envVars.TEST_WEBHOOK_URL || '',
 };
