@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
 
-import { OmdbApiService } from '../omdb-api/omdb-api.service';
+import { ExternalMoviesService } from '../external-movies/external-movies.service';
 
 @Injectable()
 export class SimilarYearService {
-  constructor(private readonly omdbApiService: OmdbApiService) {}
+  constructor(private readonly ExternalMoviesService: ExternalMoviesService) {}
 
   async getMoviesByYear(year: number): Promise<string[]> {
-    const response = await this.omdbApiService.getMoviesByYear(year);
+    const response = await this.ExternalMoviesService.getMoviesByYear(year);
 
-    if (!response.data.Search) {
+    if (!response.data.results) {
       return [];
     }
 
-    return response.data.Search.slice(0, 5).map(({ Title }) => Title);
+    return response.data.results.slice(0, 5).map(({ title }) => title);
   }
 
   setSimilarYearMovies(

@@ -15,7 +15,6 @@ export class MoviesService {
       this.similarYearService.getMoviesByYear(movie.year),
     );
     const moviesTitlesByYear = await Promise.all(moviesTitlesByYearPromises);
-
     return this.similarYearService.setSimilarYearMovies(
       movies,
       moviesTitlesByYear,

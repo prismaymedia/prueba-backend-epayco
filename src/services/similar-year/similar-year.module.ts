@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 
 import { SimilarYearService } from './similar-year.service';
-import { OmdbApiModule } from '../omdb-api/omdb-api.module';
+import { ExternalMoviesModule } from '../external-movies/external-movies.module';
 
 @Module({
   providers: [SimilarYearService],
   exports: [SimilarYearService],
-  imports: [OmdbApiModule],
+  imports: [ExternalMoviesModule],
 })
 export class SimilarYearModule {}
