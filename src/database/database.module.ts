@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { envs } from '../config';
+
 @Module({
-  imports: [MongooseModule.forRoot('mongodb+srv://no-me-hackees:givadgcqexLICxPg@checkout.y9bsm.mongodb.net/?retryWrites=true&w=majority&appName=checkout')],
+  imports: [MongooseModule.forRoot(envs.mongoUri)],
   exports: [MongooseModule],
 })
 export class DatabaseModule {}
