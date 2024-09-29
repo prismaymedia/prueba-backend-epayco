@@ -12,6 +12,6 @@ export class MoviesRepository {
   constructor(@InjectModel(Movie.name) private movieModel: Model<Movie>) {}
 
   async find({ limit }: FindMoviesOptions = { limit: 20 }) {
-    return this.movieModel.find().limit(limit).lean();
+    return this.movieModel.find().limit(limit);
   }
 }
