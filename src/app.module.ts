@@ -8,7 +8,7 @@ import { MoviesModule } from './contexts/movies/movies.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env.example',
+      envFilePath: '.env',
       isGlobal: true,
       cache: true,
     }),
