@@ -1,11 +1,30 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { APP_PIPE } from '@nestjs/core';
+
 import { DatabaseModule } from './database/database.module';
+import { MoviesModule } from './contexts/movies/movies.module';
 
 @Module({
-  imports: [DatabaseModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+      cache: true,
+    }),
+    DatabaseModule,
+    MoviesModule,
+  ],
+  controllers: [],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+      }),
+    },
+  ],
 })
 export class AppModule {}

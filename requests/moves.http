@@ -1,3 +1,2 @@
 # Test endpoint
-GET {{baseUrl}}/get-movies HTTP/1.1
-    ?webhook_url={{webhookUrl}}
+GET {{baseUrl}}/get-movies?webhook_url={{webhookUrl}}
