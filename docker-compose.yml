@@ -1,0 +1,9 @@
+services:
+  epayco_movies_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file: ./.env
+    ports:
+      - $PORT:$PORT
