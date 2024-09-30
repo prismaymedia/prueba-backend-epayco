@@ -11,7 +11,7 @@ Esta sección ha sido agregada con el objetivo de confirmar que ha sido completa
 Siga los siguientes pasos:
 
 1. Clone el repositorio
-2. Vaya a la raíz del proyecto: `cd prueba-backend-epayco`
+2. Vaya a la raíz del proyecto: `cd prueba-backend-epayco` (usar el branch `luis-fuentes-solution`)
 3. Cree un archivo `.env` con el contenido que hay en `.env.example` o copie los siguientes valores:
    ```
    MONGO_URI='mongodb+srv://read-only:Me5dRsFGcjjKKUpD@development-cluster-0.4dmjp.mongodb.net/epayco-movies?retryWrites=true&w=majority&appName=development-cluster-0'
